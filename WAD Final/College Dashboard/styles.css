@@ -1,0 +1,78 @@
+/* Body and General */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #343a40;
+    min-height: 100vh;
+    color: #fff;
+    position: fixed;
+}
+
+.sidebar h3 {
+    color: #ffc107;
+}
+
+.sidebar .nav-link {
+    color: #adb5bd;
+    font-size: 16px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    color: #fff;
+    background-color: #495057;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+/* Main Content */
+main {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* Cards Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+/* Card Titles */
+.card-title {
+    color: #6c757d;
+    font-weight: 600;
+}
+
+/* Statistics Numbers */
+.card-text.fs-4 {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Border Bottom (Section Divider) */
+.border-bottom {
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Charts */
+canvas {
+    margin-top: 10px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 767.98px) {
+    main {
+        margin-left: 0;
+    }
+}

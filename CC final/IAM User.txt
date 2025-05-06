@@ -1,0 +1,263 @@
+✅ Practical Steps to Create an IAM User in AWS
+Step 1: Log In as Root or Admin
+Go to https://aws.amazon.com/console/
+
+Log in using the root user or an IAM user with Administrator permissions.
+
+Step 2: Open the IAM Dashboard
+On the AWS Console Home, type "IAM" in the search bar.
+
+Click on IAM to open the Identity and Access Management dashboard.
+
+Step 3: Go to "Users"
+In the left-hand menu, click on "Users".
+
+Then click the "Add users" button.
+
+Step 4: Add User Details
+User name: Enter a unique name (e.g., john.doe or developer1).
+
+Select AWS access type:
+
+✅ For console access (web login):
+
+Tick "AWS Management Console access"
+
+Choose whether to auto-generate or manually set a password
+
+(Optional) Require user to change password at first sign-in
+
+✅ For CLI/API access:
+
+Tick "Access key - Programmatic access"
+
+Step 5: Set Permissions
+You get 3 options:
+
+Add user to group → Recommended
+(e.g., add to "Developers" group which has pre-defined policies)
+
+Copy permissions from existing user → Less common
+
+Attach policies directly → Only if you want to manually assign policies (e.g., AmazonS3FullAccess, AmazonEC2ReadOnlyAccess)
+
+✅ Best practice: Add the user to an existing IAM group that has policies attached.
+
+Step 6: Add Tags (Optional)
+Tags help in organizing and managing users.
+
+Example tags:
+
+Department: IT
+
+Project: WebApp
+
+(You can skip if tags are not mandatory.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sure! Here are clear, theoretical answers to your entire list — divided into **Basic**, **Intermediate**, and **Advanced**. You can directly use this for viva prep 🌱🌿🌳
+
+---
+
+## 🌱 **Basic Questions**
+
+1. **What is IAM in AWS?**
+   AWS **IAM (Identity and Access Management)** is a service that helps you securely manage **users, groups, roles, and their permissions** to AWS services and resources.
+
+2. **What is an IAM user?**
+   An **IAM user** is an identity used to interact with AWS. It has **credentials** (password/access keys) and **permissions** to perform actions in AWS.
+
+3. **How do you create an IAM user?**
+   Through the **IAM Console**, you click on **Users > Add user**, specify **access type**, assign **permissions/policies**, and create the user.
+
+4. **Can you assign a password to an IAM user? Why?**
+   Yes, if you enable **AWS Management Console access**. This allows the user to **log in** to AWS web console.
+
+5. **What are IAM groups?**
+   An **IAM group** is a collection of IAM users. Policies attached to the group apply to **all users** in that group.
+
+6. **What is the difference between an IAM user and an IAM role?**
+
+   * **IAM user** has permanent credentials.
+   * **IAM role** is a temporary identity assumed by users, services, or accounts, ideal for temporary access.
+
+7. **Can you delete the root user in AWS?**
+   No, the root user is **permanent** and cannot be deleted. It should be **secured** and used minimally.
+
+8. **How many IAM users can be created in one AWS account?**
+   By default, you can create **up to 5,000 IAM users** per AWS account.
+
+9. **What is the purpose of IAM policies?**
+   IAM policies define **permissions**. They specify **who** can perform **what actions** on **which resources** under **which conditions**.
+
+10. **Can one IAM user belong to multiple groups?**
+    Yes, an IAM user can be a member of **multiple groups**, inheriting permissions from all.
+
+11. **What is the difference between AWS account and IAM user?**
+
+    * **AWS account** is the top-level entity; it owns the resources.
+    * **IAM user** is created **within** an AWS account and gets assigned permissions.
+
+12. **Name some default security best practices while creating IAM users.**
+
+    * **Enable MFA** (Multi-Factor Authentication)
+    * **Grant least privilege** (only needed permissions)
+    * **Rotate access keys** regularly
+    * Avoid using **root user**
+    * Use **groups** to manage permissions
+    * Disable unused **credentials**
+
+---
+
+## 🌿 **Intermediate Questions**
+
+13. **How do you attach policies to an IAM user?**
+    Via the IAM console: select user → **Permissions tab** → **Add permissions** → attach policies.
+
+14. **What are inline policies vs managed policies?**
+
+    * **Inline policies**: Attached to **one user/group/role** only.
+    * **Managed policies**: Reusable and can be attached to **multiple identities**.
+
+15. **Explain the steps to provide S3 bucket access to an IAM user.**
+
+    * Attach **AmazonS3FullAccess** or custom S3 policy to the user.
+    * Ensure bucket policy allows access if cross-account.
+
+16. **What is an IAM access key? When is it used?**
+    An access key consists of **Access Key ID** and **Secret Access Key** for **programmatic access** via CLI or SDK.
+
+17. **Can you create an IAM user without console access?**
+    Yes, by only enabling **programmatic access** (access keys) during user creation.
+
+18. **How can you enable MFA (Multi-Factor Authentication) for an IAM user?**
+    Go to **IAM → Users → Security credentials tab → Assign MFA device**.
+
+19. **What is the maximum number of access keys an IAM user can have?**
+    An IAM user can have **2 active access keys** at a time.
+
+20. **How can you rotate IAM user access keys?**
+
+    * Create a **second key**
+    * Update apps to use the new key
+    * **Deactivate** and then **delete** the old key.
+
+21. **How do IAM permissions work with Allow and Deny?**
+
+    * **Explicit Deny** overrides everything.
+    * **Explicit Allow** grants access unless explicitly denied.
+    * By default, there is **implicit deny**.
+
+22. **Can IAM users assume roles? If yes, how?**
+    Yes, IAM users can assume roles using **STS AssumeRole API** and get **temporary credentials**.
+
+23. **What happens if you accidentally delete an IAM user?**
+
+    * Their **permissions and access** are lost.
+    * Access keys become **invalid**.
+    * Data (e.g., S3 objects) they created **remains**.
+
+24. **What is the difference between AWS managed policy and Customer managed policy?**
+
+    * **AWS managed**: Created and maintained by AWS.
+    * **Customer managed**: Created and controlled by you.
+
+25. **Explain the principle of Least Privilege with respect to IAM user creation.**
+    Users should only be granted **minimum permissions** needed to do their job — nothing more.
+
+---
+
+## 🌳 **Advanced Questions**
+
+26. **What is an IAM permission boundary? How does it work with users?**
+    A **permission boundary** sets the **maximum permissions** an IAM user or role can have, acting like a **limit**.
+
+27. **Can you restrict IAM users to access AWS services only from certain IP addresses?**
+    Yes, using IAM policy **Condition** with `aws:SourceIp`.
+
+28. **How does IAM policy evaluation logic work?**
+
+    * **Explicit Deny > Allow > Default Deny**
+      Meaning explicit deny always wins over allow.
+
+29. **Explain the concept of STS (AWS Security Token Service) in the context of IAM users.**
+    **STS** issues **temporary security credentials** for users or applications to access AWS resources.
+
+30. **How can you enforce IAM users to use only temporary credentials?**
+    By disallowing creation of **long-term access keys** and requiring users to **assume roles**.
+
+31. **What are Session Policies? How are they different from user policies?**
+    **Session policies** are applied when a user assumes a role and provide **temporary, additional restrictions**.
+
+32. **Explain how IAM Access Analyzer helps in user and permission auditing.**
+    It analyzes resource policies and reports **public or cross-account access**, helping tighten security.
+
+33. **How do you audit IAM user activity?**
+
+    * Use **AWS CloudTrail** to log API calls.
+    * Use **IAM Access Advisor** to check last accessed services.
+
+34. **What is the impact of setting Service Control Policies (SCPs) in an AWS Organization? Do they affect IAM users?**
+    Yes, SCPs define **max permissions** for accounts in an org. IAM users are **further restricted** by them.
+
+35. **Can you set an expiry date for an IAM user or their permissions? How?**
+    IAM users don't have built-in expiry, but **temporary credentials** can expire. You can automate **deactivation** via Lambda.
+
+36. **How do resource-based policies and IAM user policies interact?**
+    Both are **evaluated together**. Access is allowed if **either** grants permission and none explicitly denies.
+
+37. **Can IAM policies be condition-based? Give examples.**
+    Yes. Example: Allow access **only if** `aws:SourceIp` equals `203.0.113.0/24`.
+
+38. **How do you restrict an IAM user to upload files to an S3 bucket but not delete them?**
+    Attach a policy that allows `s3:PutObject` but **denies** `s3:DeleteObject`.
+
+39. **Explain the policy versioning feature and its role in user policy management.**
+    IAM policies can have **up to 5 versions**; only one is **active** at a time. Versioning helps in **rollback**.
+
+40. **How would you migrate existing IAM users to federated identity (like Azure AD, Okta)?**
+
+    * Create an **Identity Provider** in AWS
+    * Configure **SSO**
+    * Remove user IAM access and shift to **federated roles**.
+
+41. **What are AWS Identity Center and its relation to IAM users?**
+    **AWS Identity Center** (formerly SSO) allows managing **centralized user access** without creating IAM users.
+
+42. **Can IAM users access cross-region resources? How is it controlled?**
+    Yes. Access is controlled by **policies**, not by region, unless restricted using `aws:RequestedRegion`.
+
+43. **How do you handle orphan IAM users (users not attached to any group or role)?**
+
+    * Audit users
+    * Disable access keys and console access
+    * Delete if no longer needed.
+
+44. **What security risks are associated with long-lived IAM user credentials?**
+
+    * Risk of **leakage** or theft
+    * Harder to rotate
+    * Against AWS best practices (prefer **temporary** creds).
+
+45. **Explain Access Advisor and how it helps in cleaning up unused IAM user permissions.**
+    **IAM Access Advisor** shows when services were last accessed by the user, helping you **remove unused permissions**.
+
+---
+
+Would you also like a **printable table format** (so you can revise quickly before viva)?
+Just say: *Yes, give table format!* 📚

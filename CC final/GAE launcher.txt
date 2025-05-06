@@ -1,0 +1,146 @@
+✅ Step 1: Create a Google Cloud Platform (GCP) Account
+Go to 👉 https://cloud.google.com/
+
+Click Get Started for Free and sign in using your Google account.
+
+Set up your billing account (Google gives free credits for new users).
+
+After setup, you’ll land on the Google Cloud Console.
+
+✅ Step 2: Install Google Cloud SDK (Command-Line Tool)
+This is required to deploy apps to GAE from your local machine.
+
+For Windows:
+Download the installer from 👉 https://cloud.google.com/sdk/docs/install
+
+Run the installer and select:
+
+Install the Cloud SDK
+
+Optionally install Python and Git if not already installed.
+
+Once installed, open Google Cloud SDK Shell and run:
+
+bash
+Copy
+Edit
+gcloud init
+Follow the prompts to log in and select your project.
+
+For Mac/Linux:
+Open Terminal and run:
+
+bash
+Copy
+Edit
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+gcloud init
+Follow the login prompts and project selection.
+
+✅ Step 3: Enable Google App Engine (GAE) for Your Project
+In GCP Console → Navigation Menu → App Engine → Dashboard.
+
+Click Create Application.
+
+Select your region.
+
+Choose the runtime environment:
+
+For Python app → select Python.
+
+Click Create App.
+
+✅ Step 4: Create "Hello World" Python Web Application
+1. Create a New Folder for Your App
+bash
+Copy
+Edit
+mkdir hello-world-app
+cd hello-world-app
+2. Create main.py File (The App Code)
+python
+Copy
+Edit
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Hello, World from Google App Engine!'
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
+3. Create app.yaml (GAE Configuration File)
+This tells Google App Engine how to run your app.
+
+yaml
+Copy
+Edit
+runtime: python39  # Use Python 3.9 runtime
+
+entrypoint: gunicorn -b :$PORT main:app
+
+instance_class: F1  # (Optional) The instance class
+
+handlers:
+- url: /.*
+  script: auto
+4. Create requirements.txt
+This lists the Python libraries required.
+
+ini
+Copy
+Edit
+Flask==2.0.3
+gunicorn==20.1.0
+✅ Step 5: Install Required Python Packages
+Make sure you're inside your app folder.
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+✅ Step 6: Run Locally to Test
+bash
+Copy
+Edit
+python main.py
+Open your browser and go to 👉 http://127.0.0.1:8080
+
+You should see: Hello, World from Google App Engine!
+
+✅ Step 7: Deploy to Google App Engine
+Login (if not already):
+
+bash
+Copy
+Edit
+gcloud auth login
+Set your GCP project:
+
+bash
+Copy
+Edit
+gcloud config set project YOUR_PROJECT_ID
+Deploy the App:
+
+bash
+Copy
+Edit
+gcloud app deploy
+Visit Your Live App:
+After deployment, open your browser and run:
+
+bash
+Copy
+Edit
+gcloud app browse
+You’ll see your Hello World live on the internet!
+
+🌱 Optional Next Steps
+Try changing the message and redeploying.
+
+Explore adding new routes or HTML templates.
+

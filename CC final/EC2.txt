@@ -1,0 +1,94 @@
+Step 1: Sign in to AWS Management Console
+Go to AWS Console.
+
+Sign in with your AWS account credentials.
+
+Step 2: Navigate to EC2 Dashboard
+In the AWS Management Console, type "EC2" in the search bar and select EC2 under Services.
+
+Step 3: Launch an EC2 Instance
+On the EC2 Dashboard, click Launch Instance to start the process of creating a new EC2 instance.
+
+Step 4: Choose an Amazon Machine Image (AMI)
+Select an AMI (pre-configured template of the OS). You can choose from:
+
+Amazon Linux 2
+
+Ubuntu
+
+Windows Server
+
+Other custom AMIs
+
+For example, select Amazon Linux 2 AMI and click Select.
+
+Step 5: Choose an Instance Type
+AWS provides different instance types depending on the resources you need.
+
+For basic usage, you can choose t2.micro (free tier eligible if you are within the free usage limits).
+
+Select your preferred instance type and click Next: Configure Instance Details.
+
+Step 6: Configure Instance Details
+Configure the instance settings like the number of instances, network settings, and subnet.
+
+For basic setup, leave the defaults and click Next: Add Storage.
+
+Step 7: Add Storage
+By default, your instance will come with an 8 GB EBS volume (root storage).
+
+You can add more volumes or change the size if needed.
+
+Click Next: Add Tags once done.
+
+Step 8: Add Tags (Optional)
+You can add tags to your instance to easily identify it later.
+
+For example, add a tag with the key Name and value MyFirstInstance.
+
+Click Next: Configure Security Group when you're ready.
+
+Step 9: Configure Security Group
+A Security Group acts as a virtual firewall for your EC2 instance.
+
+Select Create a new security group.
+
+Add rules for SSH (port 22) for Linux or RDP (port 3389) for Windows.
+
+You can restrict access to specific IPs or allow 0.0.0.0/0 for all IPs (not recommended for production).
+
+Click Review and Launch when ready.
+
+Step 10: Review and Launch
+Review all your instance settings.
+
+If everything looks good, click Launch.
+
+Step 11: Select a Key Pair
+A Key Pair is required to connect to your instance.
+
+Choose Create a new key pair, give it a name (e.g., MyKeyPair), and click Download Key Pair.
+
+Make sure to download and save the key file (.pem) as you won’t be able to download it again.
+
+Once the key is saved, click Launch Instances.
+
+Step 12: Access Your EC2 Instance
+After launching the instance, go to Instances in the EC2 dashboard.
+
+Select your instance, and note the Public IP or Public DNS (IPv4).
+
+For SSH (Linux/Mac):
+Open your terminal and run the following command:
+
+bash
+Copy
+Edit
+ssh -i /path/to/your-key-pair.pem ec2-user@<Public-IP>
+For Windows (RDP):
+Download and open an RDP client, enter the Public IP and use the username Administrator.
+
+You will need the password, which you can retrieve by clicking Get Windows Password in the EC2 console and using your downloaded key pair.
+
+Step 13: Done!
+Your EC2 instance is now running and ready for use!
